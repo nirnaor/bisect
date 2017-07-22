@@ -2,9 +2,9 @@ const path = require('path');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
-    entry: './src/App.js',
+    entry: './src/client/App.js',
     output: {
-        filename: 'dist/bundle.js'
+        filename: 'src/server/dist/bundle.js'
     },
     module: {
         loaders: [
