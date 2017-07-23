@@ -4,12 +4,13 @@
   "description": "Single page app for bisecter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/nodemon/bin/nodemon.js src/server/index.js"
   },
   "author": "Nir Naor",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
+    "fs-extra": "^4.0.0",
     "material-ui": "^0.18.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -24,6 +25,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.2.0",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.11.0"
   }
 }
