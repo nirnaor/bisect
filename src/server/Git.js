@@ -1,8 +1,6 @@
-const fileFolderUtils = require('./FileFolderUtils.js')
 const fs = require('fs-extra')
 const settings = require("./settings.json")
-var exec = require('child_process').exec
-var Git = require('nodegit');
+let Git = require('nodegit');
 
 
 const gitClone = (url, folderToCloneTo)=> {
