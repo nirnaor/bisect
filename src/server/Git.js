@@ -1,10 +1,10 @@
 const fs = require('fs-extra')
-const settings = require("./settings.json")
-let Git = require('nodegit');
+const settings = require('./settings.json')
+let Git = require('nodegit')
 
 
 const gitClone = (url, folderToCloneTo)=> {
-    return Git.Clone(url, folderToCloneTo)
+    return Git.Clone(url, folderToCloneTo) // eslint-disable-line new-cap
 }
 
 const clone = (url) => {
@@ -12,5 +12,5 @@ const clone = (url) => {
         .then(() => gitClone(url, settings.bisectFolderAbsolutePath))
 }
 module.exports = {
-    clone: clone
+    clone: clone,
 }
