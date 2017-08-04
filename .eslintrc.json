@@ -1,20 +1,26 @@
 {
-	"extends": ["eslint:recommended", "google"],
+	"extends": ["eslint:recommended", "google", "plugin:react/recommended"],
 	"env": {
 		"es6" : true,
 		"node" : true
 	},
 	"rules": {
-        "semi": [2, "never"]
+        "semi": [2, "never"],
+        "no-console": [0],
+        "react/jsx-uses-vars": "error"
 	},
+	"plugins": [
+		"react"
+	],
 	"parserOptions": {
 		"ecmaVersion": 6,
-		"sourceType": "script",
+		"sourceType": "module",
 		"ecmaFeatures": {
-			"arrowFunctions": true,
-			"binaryLiterals": true,
-			"blockBindings": true,
-			"classes": true
+            "jsx": true,
+            "arrowFunctions": true,
+            "binaryLiterals": true,
+            "blockBindings": true,
+            "classes": true
 		}
 	}
 }

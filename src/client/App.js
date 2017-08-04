@@ -1,18 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import HorizontalLinearStepper from './HorizontalLinearStepper';
-import LinearProgress from 'material-ui/LinearProgress';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import HorizontalLinearStepper from './HorizontalLinearStepper'
 
 const App = () => (
-	<MuiThemeProvider>
-		<HorizontalLinearStepper/>
-	</MuiThemeProvider>
-);
+    <MuiThemeProvider>
+        <HorizontalLinearStepper/>
+    </MuiThemeProvider>
+)
 
-window.addEventListener("DOMContentLoaded", ()=> {
+window.addEventListener('DOMContentLoaded', ()=> {
 ReactDOM.render(
-	<App />,
-	document.getElementById('app')
-);
-});
+    <App />,
+    document.getElementById('app')
+)
+})
