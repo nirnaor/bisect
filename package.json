@@ -4,6 +4,7 @@
   "description": "Single page app for bisecter",
   "main": "index.js",
   "scripts": {
+    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors",
     "start": "./node_modules/nodemon/bin/nodemon.js src/server/index.js"
   },
   "author": "Nir Naor",
@@ -28,6 +29,7 @@
     "eslint": "^4.3.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-react": "^7.1.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "webpack-dev-server": "^2.6.1"
   }
 }
