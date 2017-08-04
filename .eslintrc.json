@@ -6,6 +6,9 @@
 	},
 	"rules": {
         "semi": [2, "never"],
+        "prefer-template": 2,
+        "no-tabs": 0,
+        "react/jsx-no-bind": 2,
         "no-console": [0],
         "require-jsdoc": [0],
         "react/jsx-uses-vars": "error"

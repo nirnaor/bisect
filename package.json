@@ -4,7 +4,9 @@
   "description": "Single page app for bisecter",
   "main": "index.js",
   "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js",
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors",
+    "lint": "./node_modules/eslint/bin/eslint.js -c .eslintrc.json src",
     "start": "./node_modules/nodemon/bin/nodemon.js src/server/index.js"
   },
   "author": "Nir Naor",
