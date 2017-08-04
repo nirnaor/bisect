@@ -7,6 +7,7 @@
 	"rules": {
         "semi": [2, "never"],
         "no-console": [0],
+        "require-jsdoc": [0],
         "react/jsx-uses-vars": "error"
 	},
 	"plugins": [

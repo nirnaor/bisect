@@ -9,6 +9,9 @@ import FlatButton from 'material-ui/FlatButton';
 import ExpandTransition from 'material-ui/internal/ExpandTransition';
 import TextField from 'material-ui/TextField';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import CloneView from './CloneView.js'
+
+
 injectTapEventPlugin();
 
 /**
@@ -54,12 +57,8 @@ class HorizontalTransition extends React.Component {
     switch (stepIndex) {
       case 0:
         return (
-          <div>
-            <TextField style={style} floatingLabelText="git@github.com:wix-private/santa.git" />
-            <p>
-            This is the repository that has the bug that you want to bisect. The bisect will run against  the master branch.
-            </p>
-          </div>
+            <CloneView exampleRepo={"https://github.com/nirnaor/calculator_test"}
+            description={"This is the repository that has the bug that you want to bisect.The bisect will run against  the master branch."}/>
         );
       case 1:
         return (
