@@ -8,13 +8,14 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 const style = {marginTop: 0, width: 300}
 const buttonStyle = {margin: 12}
+    
 
 class CloneView extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             url: '',
-            cloning: false,
+            status: 'start',
         }
         this._handleChange = this._handleChange.bind(this)
         this._clone = this._clone.bind(this)
@@ -32,7 +33,7 @@ class CloneView extends React.Component {
                 console.log('done succeessfully')
 			}
 		}
-		this.setState({cloning: true}, ()=> xhr.send())
+		this.setState({status: 'cloning'}, ()=> xhr.send())
     }
 
     render() {
@@ -62,7 +63,7 @@ class CloneView extends React.Component {
             {this.props.description}
             </p>
             </div>
-        return this.state.cloning ? (
+        return this.state.status === 'cloning' ? (
             <div>
             {ri}
             </div>
