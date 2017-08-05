@@ -9,7 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 import ExpandTransition from 'material-ui/internal/ExpandTransition';
 import TextField from 'material-ui/TextField';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import CloneView from './CloneView.js'
+import CloneView from './clone/CloneView.js'
 
 
 injectTapEventPlugin();
