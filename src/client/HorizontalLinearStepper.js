@@ -18,6 +18,11 @@ injectTapEventPlugin();
  * A contrived example using a transition between steps
  */
 class HorizontalTransition extends React.Component {
+  constructor(props) {
+      super(props)
+      this._onSUTCloned = this._onSUTCloned.bind(this)
+      this._onTestRepoCloned = this._onTestRepoCloned.bind(this)
+  }
 
   state = {
     loading: false,
@@ -52,32 +57,36 @@ class HorizontalTransition extends React.Component {
     }
   };
 
+
+  _onSUTCloned(sutRepoURL) {
+      this.setState({sutRepoURL: sutRepoURL})
+  }
+  _onTestRepoCloned(testRepoURL) {
+      this.setState({testRepoURL: testRepoURL})
+  }
+
   getStepContent(stepIndex) {
     var style = {marginTop: 0, width:300};
     switch (stepIndex) {
       case 0:
         return (
-            <CloneView exampleRepo={"https://github.com/nirnaor/calculator_test"}
-            description={"This is the repository that has the bug that you want to bisect.The bisect will run against  the master branch."}/>
+            <CloneView exampleRepo={"https://github.com/nirnaor/calculator"}
+            description={"This is the repository that has the bug that you want to bisect.The bisect will run against  the master branch."}
+            onRepoCloned={this._onSUTCloned}
+            />
         );
       case 1:
         return (
-          <div>
-            <TextField style={{marginTop: 0}} floatingLabelText="Ad group name" />
-            <p>
-              Ad group status is different than the statuses for campaigns, ads, and keywords, though the
-              statuses can affect each other. Ad groups are contained within a campaign, and each campaign can
-              have one or more ad groups. Within each ad group are ads, keywords, and bids.
-            </p>
-            <p>Something something whatever cool</p>
-          </div>
+            <CloneView exampleRepo={"https://github.com/nirnaor/calculator"}
+            description={"This is the testing repository that contains the script to run with the bisect. The test will run with the master branch of this repository."}
+            onRepoCloned={this._onTestRepoCloned}
+            />
         );
       case 2:
         return (
           <p>
-            Try out different ad text to see what brings in the most customers, and learn how to
-            enhance your ads using features like ad extensions. If you run into any problems with your
-            ads, find out how to tell if they're running and how to resolve approval issues.
+            System under test: {this.state.sutRepoURL}
+            Testing repository: {this.state.testRepoURL}
           </p>
         );
       default:

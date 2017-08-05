@@ -25,6 +25,7 @@ class StartComponent extends React.Component {
         return (
             <div>
                 <TextField style={style} value={this.state.repositoryUrl}
+                hintText={this.props.hintText}
                 onChange={this._handleChange}
                 />
                 <RaisedButton style={buttonStyle} onClick={this._handleCloneClicked}
@@ -40,6 +41,7 @@ class StartComponent extends React.Component {
 
 StartComponent.propTypes = {
     description: PropTypes.string.isRequired,
+    hintText: PropTypes.string.isRequired,
     onCloneCLicked: PropTypes.func.isRequired,
 }
 

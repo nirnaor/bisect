@@ -9,7 +9,6 @@ class CloneView extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            repositoryUrl: 'some repo from github',
             status: 'start',
         }
         this._clone = this._clone.bind(this)
@@ -18,6 +17,7 @@ class CloneView extends React.Component {
     _done(ev) {
         if (ev.target.status === 200) {
             console.log('done succeessfully')
+            this.props.onRepoCloned(this.state.repositoryUrl)
             this.setState({status: 'done'})
         }
     }
@@ -28,14 +28,15 @@ class CloneView extends React.Component {
 		xhr.open('PUT', `/clone?url=${repositoryUrl}`)
 		xhr.setRequestHeader('Content-Type', 'application/json')
 		xhr.onload = this._done.bind(this)
-		this.setState({status: 'cloning'}, ()=> xhr.send())
+		this.setState({repositoryUrl: repositoryUrl, status: 'cloning'},
+            ()=> xhr.send())
     }
 
     render() {
         if (this.state.status === 'start') {
-            return <StartComponent repositoryUrl={this.state.repositoryUrl}
-            onCloneCLicked={this._clone}
+            return <StartComponent onCloneCLicked={this._clone}
             description={this.props.description}
+            hintText={this.props.exampleRepo}
                 />
         } else if (this.state.status === 'cloning') {
             return <CloningComponent repositoryUrl={this.state.repositoryUrl}/>
@@ -47,6 +48,7 @@ class CloneView extends React.Component {
 
 CloneView.propTypes = {
     exampleRepo: PropTypes.string.isRequired,
+    onRepoCloned: PropTypes.func.isRequired,
     description: PropTypes.string.isRequired,
 }
 
