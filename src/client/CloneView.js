@@ -14,6 +14,7 @@ class CloneView extends React.Component {
         super(props)
         this.state = {
             url: '',
+            cloning: false,
         }
         this._handleChange = this._handleChange.bind(this)
         this._clone = this._clone.bind(this)
@@ -35,15 +36,8 @@ class CloneView extends React.Component {
     }
 
     render() {
-        return (
-          <div>
-            <TextField style={style} value={this.state.url}
-			onChange={this._handleChange}
-                floatingLabelText={this.props.exampleRepo}/>
-            <RaisedButton style={buttonStyle}onClick={this._clone}
-            label="Clone"
-            primary={true} />
-            {this.state.cloning &&
+        const ri =
+            <div>
                 <RefreshIndicator
                 size={40}
                 left={10}
@@ -51,11 +45,31 @@ class CloneView extends React.Component {
                 status="loading"
                 style={style.refresh}
                 />
-            }
+            <p>
+            cloning your repo : {this.state.url}
+            </p>
+
+            </div>
+        const start =
+            <div>
+            <TextField style={style} value={this.state.url}
+			onChange={this._handleChange}
+                floatingLabelText={this.props.exampleRepo}/>
+            <RaisedButton style={buttonStyle}onClick={this._clone}
+            label="Clone"
+            primary={true} />
             <p>
             {this.props.description}
             </p>
-          </div>
+            </div>
+        return this.state.cloning ? (
+            <div>
+            {ri}
+            </div>
+        ) : (
+            <div>
+            {start}
+            </div>
         )
     }
 }
