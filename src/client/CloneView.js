@@ -14,7 +14,7 @@ class CloneView extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: '',
+            url: 'somerepo',
             status: 'start',
         }
         this._handleChange = this._handleChange.bind(this)
@@ -23,35 +23,26 @@ class CloneView extends React.Component {
 	_handleChange(event) {
 		this.setState({url: event.target.value})
 	}
+
+    _done(ev) {
+        if (ev.target.status === 200) {
+            console.log('done succeessfully')
+            this.setState({status: 'done'})
+        }
+    }
+
     _clone() {
 		console.log(`will clone now this repo: ${this.state.url}`)
 		const xhr = new XMLHttpRequest()
 		xhr.open('PUT', `/clone?url=${this.state.url}`)
 		xhr.setRequestHeader('Content-Type', 'application/json')
-		xhr.onload = function() {
-			if (xhr.status === 200) {
-                console.log('done succeessfully')
-			}
-		}
+		xhr.onload = this._done.bind(this)
 		this.setState({status: 'cloning'}, ()=> xhr.send())
     }
 
     render() {
-        const ri =
-            <div>
-                <RefreshIndicator
-                size={40}
-                left={10}
-                top={0}
-                status="loading"
-                style={style.refresh}
-                />
-            <p>
-            cloning your repo : {this.state.url}
-            </p>
-
-            </div>
-        const start =
+        if (this.state.status === 'start') {
+            return (
             <div>
             <TextField style={style} value={this.state.url}
 			onChange={this._handleChange}
@@ -63,15 +54,28 @@ class CloneView extends React.Component {
             {this.props.description}
             </p>
             </div>
-        return this.state.status === 'cloning' ? (
+            )
+        } else if (this.state.status === 'cloning') {
+            return (
             <div>
-            {ri}
+            Cloning <b>{this.state.url}</b> from GitHub.
+                <RefreshIndicator
+                size={40}
+                left={300}
+                top={0}
+                status="loading"
+                style={style.refresh}
+                />
+
             </div>
-        ) : (
-            <div>
-            {start}
-            </div>
-        )
+            )
+        } else if (this.state.status === 'done') {
+            return (
+            <p>
+                Repo <b> {this.state.url}</b> cloned successfuly. Click next to move forward.
+            </p>
+            )
+        }
     }
 }
 
