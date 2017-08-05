@@ -17,7 +17,6 @@ class CloneView extends React.Component {
     _done(ev) {
         if (ev.target.status === 200) {
             console.log('done succeessfully')
-            this.props.onRepoCloned(this.state.repositoryUrl)
             this.setState({status: 'done'})
         }
     }
@@ -49,7 +48,6 @@ class CloneView extends React.Component {
 CloneView.propTypes = {
     exampleRepo: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    onRepoCloned: PropTypes.func.isRequired,
     description: PropTypes.string.isRequired,
 }
 

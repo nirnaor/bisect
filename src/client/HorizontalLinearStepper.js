@@ -9,7 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 import ExpandTransition from 'material-ui/internal/ExpandTransition';
 import TextField from 'material-ui/TextField';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import CloneView from './clone/CloneView.js'
+import RepositoriesComponent from './RepositoriesComponent.js'
 
 
 injectTapEventPlugin();
@@ -18,11 +18,6 @@ injectTapEventPlugin();
  * A contrived example using a transition between steps
  */
 class HorizontalTransition extends React.Component {
-  constructor(props) {
-      super(props)
-      this._onSUTCloned = this._onSUTCloned.bind(this)
-      this._onTestRepoCloned = this._onTestRepoCloned.bind(this)
-  }
 
   state = {
     loading: false,
@@ -58,40 +53,11 @@ class HorizontalTransition extends React.Component {
   };
 
 
-  _onSUTCloned(sutRepoURL) {
-      this.setState({sutRepoURL: sutRepoURL})
-  }
-  _onTestRepoCloned(testRepoURL) {
-      this.setState({testRepoURL: testRepoURL})
-  }
 
   getStepContent(stepIndex) {
-    var style = {marginTop: 0, width:300};
-    switch (stepIndex) {
-      case 0:
-        return (
-            <CloneView type="sut" exampleRepo={"https://github.com/nirnaor/calculator"}
-            description={"This is the repository that has the bug that you want to bisect.The bisect will run against  the master branch."}
-            onRepoCloned={this._onSUTCloned}
-            />
-        );
-      case 1:
-        return (
-            <CloneView type="test" exampleRepo={"https://github.com/nirnaor/calculator"}
-            description={"This is the testing repository that contains the script to run with the bisect. The test will run with the master branch of this repository."}
-            onRepoCloned={this._onTestRepoCloned}
-            />
-        );
-      case 2:
-        return (
-          <p>
-            System under test: {this.state.sutRepoURL}
-            Testing repository: {this.state.testRepoURL}
-          </p>
-        );
-      default:
-        return 'You\'re a long way from home sonny jim!';
-    }
+      return (
+          <RepositoriesComponent stepIndex={stepIndex} />
+      )
   }
 
   renderContent() {
