@@ -2,6 +2,8 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import PropTypes from 'prop-types'
 import RaisedButton from 'material-ui/RaisedButton'
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+
 
 
 const style = {marginTop: 0, width: 300}
@@ -21,7 +23,6 @@ class CloneView extends React.Component {
 	}
     _clone() {
 		console.log(`will clone now this repo: ${this.state.url}`)
-		// Update a user
 		const xhr = new XMLHttpRequest()
 		xhr.open('PUT', `/clone?url=${this.state.url}`)
 		xhr.setRequestHeader('Content-Type', 'application/json')
@@ -30,7 +31,7 @@ class CloneView extends React.Component {
                 console.log('done succeessfully')
 			}
 		}
-		xhr.send()
+		this.setState({cloning: true}, ()=> xhr.send())
     }
 
     render() {
@@ -42,6 +43,15 @@ class CloneView extends React.Component {
             <RaisedButton style={buttonStyle}onClick={this._clone}
             label="Clone"
             primary={true} />
+            {this.state.cloning &&
+                <RefreshIndicator
+                size={40}
+                left={10}
+                top={0}
+                status="loading"
+                style={style.refresh}
+                />
+            }
             <p>
             {this.props.description}
             </p>
