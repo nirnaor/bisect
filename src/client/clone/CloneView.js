@@ -25,7 +25,7 @@ class CloneView extends React.Component {
     _clone(repositoryUrl) {
 		console.log(`will clone now this repo: ${repositoryUrl}`)
 		const xhr = new XMLHttpRequest()
-		xhr.open('PUT', `/clone?url=${repositoryUrl}`)
+		xhr.open('PUT', `/clone?url=${repositoryUrl}&type=${this.props.type}`)
 		xhr.setRequestHeader('Content-Type', 'application/json')
 		xhr.onload = this._done.bind(this)
 		this.setState({repositoryUrl: repositoryUrl, status: 'cloning'},
@@ -48,6 +48,7 @@ class CloneView extends React.Component {
 
 CloneView.propTypes = {
     exampleRepo: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     onRepoCloned: PropTypes.func.isRequired,
     description: PropTypes.string.isRequired,
 }

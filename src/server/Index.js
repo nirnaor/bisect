@@ -9,7 +9,7 @@ app.listen(3000, function() {
 })
 
 app.put('/clone', (req, res)=> {
-    git.clone(req.query.url).then((stdout) => {
+    git.clone(req.query.url, req.query.type).then((stdout) => {
         console.log(`index: code ${stdout}`)
         res.json({nir: stdout})
     })

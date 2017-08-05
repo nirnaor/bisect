@@ -70,14 +70,14 @@ class HorizontalTransition extends React.Component {
     switch (stepIndex) {
       case 0:
         return (
-            <CloneView exampleRepo={"https://github.com/nirnaor/calculator"}
+            <CloneView type="sut" exampleRepo={"https://github.com/nirnaor/calculator"}
             description={"This is the repository that has the bug that you want to bisect.The bisect will run against  the master branch."}
             onRepoCloned={this._onSUTCloned}
             />
         );
       case 1:
         return (
-            <CloneView exampleRepo={"https://github.com/nirnaor/calculator"}
+            <CloneView type="test" exampleRepo={"https://github.com/nirnaor/calculator"}
             description={"This is the testing repository that contains the script to run with the bisect. The test will run with the master branch of this repository."}
             onRepoCloned={this._onTestRepoCloned}
             />
